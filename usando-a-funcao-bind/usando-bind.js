@@ -1,7 +1,7 @@
-var estado = (function(){
+var estado = (function() {
 	var comboEstado = $('#combo-estado');
-
-	function iniciar(){
+	
+	function iniciar() {
 		$.ajax({
 			url: 'http://localhost:8080/estados',
 			method: 'GET',
@@ -11,27 +11,22 @@ var estado = (function(){
 		});
 	}
 
-	function onEstadosRetornados(estados){
-		comboEstado.html('<option> Selecione o estado </option>');
-
-		estados.forEach( function(estado) {
-			
-			// Var optionEstado será um elemente do tipo option com o value uf e nome do estado
+	function onEstadosRetornados(estados) {
+		comboEstado.html('<option>Selecione o estado</option>');
+		estados.forEach(function(estado) {
 			var optionEstado = $('<option>').val(estado.uf).text(estado.nome);
-
-			//comboEstado recebe o option de estado
 			comboEstado.append(optionEstado);
 		});
 	}
 
-	function onError(){
-		alert('Erro ao carregar dados do servidor!');
+	function onError() {
+		alert('Erro carregando estados do servidor!');
 	}
 
-	return{
+	return {
 		iniciar: iniciar
 	}
-
+	
 })();
 
 estado.iniciar();
